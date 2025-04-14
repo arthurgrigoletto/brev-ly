@@ -20,7 +20,6 @@ export async function createLink(
   const { originalUrl, shortUrl } = createLinkInput.parse(input)
 
   if (!cleanString(shortUrl)) {
-    console.log('Invalid short url')
     return makeLeft(new InvalidShortUrl())
   }
 

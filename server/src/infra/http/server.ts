@@ -9,6 +9,7 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 import { createLinkRoute } from './routes/create-link'
+import { deleteLinkRoute } from './routes/delete-link'
 import { healthCheckRoute } from './routes/health-check'
 import { transformSwaggerSchema } from './transform-swagger-schema'
 
@@ -50,6 +51,7 @@ server.register(fastifySwaggerUi, { routePrefix: '/docs' })
 
 server.register(healthCheckRoute)
 server.register(createLinkRoute)
+server.register(deleteLinkRoute)
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')

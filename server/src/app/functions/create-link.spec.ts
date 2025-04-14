@@ -12,7 +12,7 @@ describe('create link', () => {
   it('should be able to create a link', async () => {
     const sut = await createLink({
       originalUrl: faker.internet.url(),
-      shortUrl: 'test',
+      shortUrl: `test-${new Date().getTime()}`,
     })
 
     expect(isRight(sut)).toBe(true)
