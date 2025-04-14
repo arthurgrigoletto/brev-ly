@@ -6,13 +6,12 @@ import type { InferInsertModel } from 'drizzle-orm'
 export async function makeLink(
   overrides?: Partial<InferInsertModel<typeof schema.links>>
 ) {
-  const fileName = faker.system.fileName()
-
   const result = await db
     .insert(schema.links)
     .values({
       originalUrl: faker.internet.url(),
       shortUrl: faker.internet.url(),
+      createdAt: new Date(),
       ...overrides,
     })
     .returning()

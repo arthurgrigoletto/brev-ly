@@ -24,7 +24,9 @@ export async function createLink(
   }
 
   const [link] = await db
-    .select()
+    .select({
+      id: schema.links.id,
+    })
     .from(schema.links)
     .where(eq(schema.links.shortUrl, shortUrl))
     .limit(1)
