@@ -29,11 +29,11 @@ describe('export links', () => {
         }
       })
 
-    const upload1 = await makeLink()
-    const upload2 = await makeLink()
-    const upload3 = await makeLink()
-    const upload4 = await makeLink()
-    const upload5 = await makeLink()
+    const link1 = await makeLink()
+    const link2 = await makeLink()
+    const link3 = await makeLink()
+    const link4 = await makeLink()
+    const link5 = await makeLink()
 
     const sut = await exportLinks()
 
@@ -64,38 +64,38 @@ describe('export links', () => {
       expect.arrayContaining([
         ['ID', 'Original URL', 'Short URL', 'Access Count', 'Created at'],
         [
-          upload1.id,
-          upload1.originalUrl,
-          upload1.shortUrl,
-          String(upload1.accessCount),
+          link1.id,
+          link1.originalUrl,
+          link1.shortUrl,
+          String(link1.accessCount),
           expect.any(String),
         ],
         [
-          upload2.id,
-          upload2.originalUrl,
-          upload2.shortUrl,
-          String(upload2.accessCount),
+          link2.id,
+          link2.originalUrl,
+          link2.shortUrl,
+          String(link2.accessCount),
           expect.any(String),
         ],
         [
-          upload3.id,
-          upload3.originalUrl,
-          upload3.shortUrl,
-          String(upload3.accessCount),
+          link3.id,
+          link3.originalUrl,
+          link3.shortUrl,
+          String(link3.accessCount),
           expect.any(String),
         ],
         [
-          upload4.id,
-          upload4.originalUrl,
-          upload4.shortUrl,
-          String(upload4.accessCount),
+          link4.id,
+          link4.originalUrl,
+          link4.shortUrl,
+          String(link4.accessCount),
           expect.any(String),
         ],
         [
-          upload5.id,
-          upload5.originalUrl,
-          upload5.shortUrl,
-          String(upload5.accessCount),
+          link5.id,
+          link5.originalUrl,
+          link5.shortUrl,
+          String(link5.accessCount),
           expect.any(String),
         ],
       ])
