@@ -43,7 +43,7 @@ server.register(fastifyMultipart)
 server.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'Upload Server',
+      title: 'Brev.ly API',
       version: '1.0.0',
     },
   },
