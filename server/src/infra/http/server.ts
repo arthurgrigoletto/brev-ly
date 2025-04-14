@@ -11,6 +11,7 @@ import {
 import { createLinkRoute } from './routes/create-link'
 import { deleteLinkRoute } from './routes/delete-link'
 import { getLinksRoute } from './routes/get-links'
+import { getOriginalUrlRoute } from './routes/get-original-url'
 import { healthCheckRoute } from './routes/health-check'
 import { transformSwaggerSchema } from './transform-swagger-schema'
 
@@ -54,6 +55,7 @@ server.register(healthCheckRoute)
 server.register(createLinkRoute)
 server.register(deleteLinkRoute)
 server.register(getLinksRoute)
+server.register(getOriginalUrlRoute)
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')

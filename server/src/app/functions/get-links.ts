@@ -17,6 +17,7 @@ type GetLinksOutput = {
     id: string
     originalUrl: string
     shortUrl: string
+    accessCount: number
     createdAt: Date
   }[]
   total: number
@@ -33,6 +34,7 @@ export async function getLinks(
         id: schema.links.id,
         originalUrl: schema.links.originalUrl,
         shortUrl: schema.links.shortUrl,
+        accessCount: schema.links.accessCount,
         createdAt: schema.links.createdAt,
       })
       .from(schema.links)
