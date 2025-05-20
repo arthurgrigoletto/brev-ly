@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { EntityNotFound } from './errors/entity-not-found'
 
 const getOriginalUrlInput = z.object({
-  linkId: z.string().uuid(),
+  linkId: z.string(),
 })
 
 type GetOriginalUrlInput = z.input<typeof getOriginalUrlInput>
@@ -22,7 +22,7 @@ export async function getOriginalUrl(
       accessCount: schema.links.accessCount,
     })
     .from(schema.links)
-    .where(eq(schema.links.id, linkId))
+    .where(eq(schema.links.shortUrl, linkId))
     .limit(1)
 
   if (!link) {
@@ -34,7 +34,7 @@ export async function getOriginalUrl(
     .set({
       accessCount: link.accessCount + 1,
     })
-    .where(eq(schema.links.id, linkId))
+    .where(eq(schema.links.shortUrl, linkId))
 
   return makeRight({ originalUrl: link.originalUrl })
 }

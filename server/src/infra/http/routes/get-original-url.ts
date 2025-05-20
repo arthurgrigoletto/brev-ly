@@ -11,7 +11,7 @@ export const getOriginalUrlRoute: FastifyPluginAsyncZod = async server => {
         summary: 'Get original url of a link',
         tags: ['links'],
         params: z.object({
-          linkId: z.string().uuid(),
+          linkId: z.string(),
         }),
         response: {
           200: z.object({
