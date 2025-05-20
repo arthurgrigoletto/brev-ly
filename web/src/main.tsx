@@ -6,6 +6,7 @@ import { NuqsAdapter } from 'nuqs/adapters/react';
 import { NotFound } from './components/not-found';
 import { queryClient } from './lib/react-query';
 import { routeTree } from './routeTree.gen';
+import { Toaster } from './components/ui/sonner';
 
 const router = createRouter({
   routeTree,
@@ -33,6 +34,7 @@ if (!rootElement.innerHTML) {
     <NuqsAdapter>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <Toaster richColors/>
       </QueryClientProvider>
     </NuqsAdapter>
   );

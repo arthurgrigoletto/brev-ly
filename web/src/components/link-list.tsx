@@ -1,7 +1,7 @@
 import { env } from '@/env';
 import { useDeleteLinkMutation } from '@/http/delete-link';
-import { useLinks } from '@/http/get-links';
-import { Link, Trash } from '@phosphor-icons/react';
+import { useLinks, type Link } from '@/http/get-links';
+import { Link as LinkIcon, Trash } from '@phosphor-icons/react';
 import { useQueryState } from 'nuqs';
 import { CopyButton } from './copy-button';
 import { Button } from './ui/button';
@@ -23,6 +23,12 @@ export function LinkList() {
 
   const pageQuantity = Math.ceil((linksQuery.data?.total ?? 0) / 4);
 
+  function handleDeleteLink(link: Link) {
+    if(confirm(`Voce realmente quer apagar o link ${link.shortUrl}?`)) {
+      deleteLinkMutation.mutate({ linkId: link.id })
+    }
+  }
+
   if (linksQuery.isLoading) {
     return Array.from({ length: 3 }).map((_, index) => (
       <div
@@ -42,7 +48,7 @@ export function LinkList() {
     return (
       <div className="flex h-full min-h-28 w-full flex-col items-center justify-center gap-4">
         <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-          <Link className="size-8 text-gray-400" />
+          <LinkIcon className="size-8 text-gray-400" />
           <span className="text-gray-500 text-xs uppercase">
             ainda não existem links cadastrados
           </span>
@@ -78,7 +84,7 @@ export function LinkList() {
               <Button
                 variant="secondary"
                 size="icon"
-                onClick={() => deleteLinkMutation.mutate({ linkId: link.id })}
+                onClick={() => handleDeleteLink(link)}
               >
                 <Trash />
               </Button>

@@ -4,6 +4,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { nanoid } from 'nanoid';
 import { useQueryState } from 'nuqs';
 import { getLinksQueryOptions } from './get-links';
+import { toast } from "sonner"
+import { ApplicationError } from './application-error';
+
 
 type CreateLinkRequest = {
   originalUrl: string;
@@ -24,7 +27,11 @@ async function createLink({ originalUrl, shortUrl }: CreateLinkRequest) {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch links');
+    if(response.status === 409) {
+      throw new ApplicationError('Link encurtado já existe', 409);
+    }
+
+    throw new ApplicationError();
   }
 
   const data: CreateLinkResponse = await response.json();
@@ -65,8 +72,9 @@ export function useCreateLinkMutation() {
 
       return { previousLinks };
     },
-    onError(_error, _variables, context) {
+    onError(error, _variables, context) {
       queryClient.setQueryData(getLinksQueryKey, context?.previousLinks);
+      toast.error(error.message)
     },
     onSettled() {
       queryClient.invalidateQueries({ queryKey: getLinksQueryKey });

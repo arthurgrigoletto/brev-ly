@@ -5,14 +5,16 @@ import { queryOptions, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useQueryState } from 'nuqs';
 import { useEffect } from 'react';
 
+export type Link = {
+  id: string;
+  originalUrl: string;
+  shortUrl: string;
+  accessCount: number;
+  createdAt: Date;
+}
+
 type GetLinksResponse = {
-  links: {
-    id: string;
-    originalUrl: string;
-    shortUrl: string;
-    accessCount: number;
-    createdAt: Date;
-  }[];
+  links: Link[];
   total: number;
 };
 
