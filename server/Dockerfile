@@ -32,4 +32,4 @@ COPY --from=build /usr/src/app/package.json ./package.json
 
 EXPOSE 3333
 
-CMD ["dist/infra/http/server.js"]
+CMD ["dist/infra/http/server.mjs"]
